@@ -131,3 +131,7 @@ dmypy.json
 media/
 images/
 cache/
+.vscode/
+*.docx
+*.doc
+*.md

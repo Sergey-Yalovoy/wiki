@@ -1,0 +1,20 @@
+version: "3.9"
+
+networks:
+  app-net:
+    driver: bridge
+
+services:
+  wiki:
+    build: ./
+    command: gunicorn --bind 0.0.0.0:1111 base.wsgi
+    volumes:
+        - .:/usr/src/app/
+    networks:
+      - app-net
+    ports:
+        - 1111:1111
+    env_file:
+        - ./.env
+    restart: unless-stopped
+  
