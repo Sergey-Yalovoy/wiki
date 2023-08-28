@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'wiki.plugins.globalhistory.apps.GlobalHistoryConfig',
     'wiki.plugins.help.apps.HelpConfig',
     'wiki.plugins.links.apps.LinksConfig',
+    'convert_to_md',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
-        # ...
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',

@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from wiki.plugins.attachments.urls import urlpatterns as attachments_url
+from django.urls import re_path
+from convert_to_md.views import NewAttachmentView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +30,9 @@ urlpatterns = [
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+attachments_url.pop(0)
+attachments_url += [re_path(r"^$", NewAttachmentView.as_view(),
+                            name="attachments_index"),]
+print('После изменения')
+print(attachments_url)
