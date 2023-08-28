@@ -34,5 +34,3 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 attachments_url.pop(0)
 attachments_url += [re_path(r"^$", NewAttachmentView.as_view(),
                             name="attachments_index"),]
-print('После изменения')
-print(attachments_url)
