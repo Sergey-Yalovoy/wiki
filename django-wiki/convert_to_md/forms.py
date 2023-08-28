@@ -8,7 +8,7 @@ class NewAttachmentForm(AttachmentForm):
     
     to_convert = forms.BooleanField(label=_("Convert docx to article"),
         help_text=_("Convert docx to article?"),
-        required=True,)
+        required=False,)
     
     def save(self, *args, **kwargs):
         result = super().save(*args, **kwargs)
