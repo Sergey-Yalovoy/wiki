@@ -135,3 +135,4 @@ cache/
 *.docx
 *.doc
 *.md
+static/

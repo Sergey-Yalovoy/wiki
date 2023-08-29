@@ -1,20 +1,37 @@
 version: "3.9"
 
 networks:
-  app-net:
-    driver: bridge
+  app-net-wiki:
+    external:
+      name: app-net
 
 services:
   wiki:
     build: ./
-    command: gunicorn --bind 0.0.0.0:1111 base.wsgi
+    command: gunicorn base.wsgi:application --bind 0.0.0.0:1111
     volumes:
-        - .:/usr/src/app/
+        - ./django-wiki/:/usr/src/app/
+        - static_volume:/usr/src/app/static
     networks:
-      - app-net
+      - app-net-wiki
     ports:
-        - 1111:1111
+      - 1111:1111
+    mem_limit: 512m
+    mem_reservation: 256M
     env_file:
         - ./.env
     restart: unless-stopped
   
+  nginx:
+    build: ./nginx
+    networks:
+      - app-net-wiki
+    ports:
+      - 1234:80
+    depends_on:
+      - wiki
+    volumes:
+        - static_volume:/usr/src/app/static
+  
+volumes:
+  static_volume:
