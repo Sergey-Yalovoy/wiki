@@ -1,0 +1,21 @@
+version: "3.9"
+
+networks:
+  app-net-wiki:
+    driver: bridge
+
+services:
+  wiki:
+    build: ./
+    command: python manage.py runserver 0.0.0.0:1111
+    volumes:
+        - ./django-wiki/:/usr/src/app/
+    networks:
+      - app-net-wiki
+    ports:
+      - 1111:1111
+    mem_limit: 512m
+    mem_reservation: 256M
+    env_file:
+        - ./.env
+    restart: unless-stopped

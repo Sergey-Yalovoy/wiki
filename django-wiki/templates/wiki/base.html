@@ -1,13 +1,13 @@
 {% extends "wiki/base_site.html" %}
 
-{% block wiki_site_title %} - ecoWiki{% endblock %}
+{% block wiki_site_title %} - {{WIKI_SITE_TITLE}}{% endblock %}
 
 {% block wiki_header_branding %}
-<a class="navbar-brand" href="/">"Экоферма "Кушкульские теплицы"</a>
+<a class="navbar-brand" href="/">{{WIKI_HEADER_BRANDING}}</a>
 {% endblock %}
 
 {% block wiki_header_navlinks %}
 <ul class="nav navbar-nav">
-  <li class="active"><a href="{% url 'wiki:root' %}">--WiKi--</a></li>
+  <li class="active"><a href="{% url 'wiki:root' %}">{{WIKI_HEADER_NAVLINKS}}</a></li>
 </ul>
 {% endblock %}

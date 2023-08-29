@@ -24,8 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEBUG", 0)
-DEBUG = 1
+DEBUG = int(os.environ.get("DEBUG", False))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS",',').split(',')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -88,17 +87,21 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'convert_to_md.context_processors.admin_processor',
                 "sekizai.context_processors.sekizai",
             ],
         },
     },
 ]
 
-# WIKI_ACCOUNT_HANDLING = True
-# WIKI_ACCOUNT_SIGNUP_ALLOWED = True
-# WIKI_ANONYMOUS = False
-# WIKI_ANONYMOUS_WRITE = False
-# WIKI_ACCOUNT_SIGNUP_ALLOWED = True
+WIKI_ACCOUNT_HANDLING = os.environ.get("WIKI_ACCOUNT_HANDLING", 
+                                       default=True)
+WIKI_ACCOUNT_SIGNUP_ALLOWED = os.environ.get("WIKI_ACCOUNT_HANDLING", 
+                                             default=False)
+WIKI_ANONYMOUS = os.environ.get("WIKI_ACCOUNT_HANDLING", 
+                                default=False)
+WIKI_ANONYMOUS_WRITE = os.environ.get("WIKI_ANONYMOUS_WRITE", 
+                                default=False)
 
 WSGI_APPLICATION = 'base.wsgi.application'
 
@@ -165,3 +168,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+WIKI_HEADER_BRANDING = os.environ.get("WIKI_HEADER_BRANDING", default='WiKi')
+WIKI_HEADER_NAVLINKS = os.environ.get("WIKI_HEADER_NAVLINKS", default='__WiKi__')
+WIKI_SITE_TITLE = os.environ.get("WIKI_SITE_TITLE", default='WiKi')

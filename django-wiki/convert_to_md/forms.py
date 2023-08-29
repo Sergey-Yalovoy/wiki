@@ -1,6 +1,6 @@
 from wiki.plugins.attachments.forms import AttachmentForm
 from django import forms
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from converters.base_converter import docx_to_markdown_io
 from wiki.models import ArticleRevision
 
