@@ -30,13 +30,6 @@ DEBUG = 1
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS",',').split(',')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
-# CSRF_TRUSTED_ORIGINS = ['https://wiki.ecoferma56.ru']
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -101,11 +94,11 @@ TEMPLATES = [
     },
 ]
 
-WIKI_ACCOUNT_HANDLING = True
-WIKI_ACCOUNT_SIGNUP_ALLOWED = True
-WIKI_ANONYMOUS = False
-WIKI_ANONYMOUS_WRITE = False
-WIKI_ACCOUNT_SIGNUP_ALLOWED = True
+# WIKI_ACCOUNT_HANDLING = True
+# WIKI_ACCOUNT_SIGNUP_ALLOWED = True
+# WIKI_ANONYMOUS = False
+# WIKI_ANONYMOUS_WRITE = False
+# WIKI_ACCOUNT_SIGNUP_ALLOWED = True
 
 WSGI_APPLICATION = 'base.wsgi.application'
 
@@ -155,8 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru-Ru'
-
+LANGUAGE_CODE = os.environ.get("LANGUAGE_CODE", default='en-Eu')
 TIME_ZONE = os.environ.get("TIME_ZONE", default='UTC')
 
 USE_I18N = True
