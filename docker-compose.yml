@@ -2,8 +2,7 @@ version: "3.9"
 
 networks:
   app-net-wiki:
-    external:
-      name: app-net
+    driver: bridge
 
 services:
   wiki:
@@ -11,7 +10,7 @@ services:
     command: gunicorn base.wsgi:application --bind 0.0.0.0:1111
     volumes:
         - ./django-wiki/:/usr/src/app/
-        - static_volume:/usr/src/app/static
+        # - static_volume:/usr/src/app/static
     networks:
       - app-net-wiki
     ports:
@@ -22,16 +21,16 @@ services:
         - ./.env
     restart: unless-stopped
   
-  nginx:
-    build: ./nginx
-    networks:
-      - app-net-wiki
-    ports:
-      - 1234:80
-    depends_on:
-      - wiki
-    volumes:
-        - static_volume:/usr/src/app/static
+  # nginx:
+  #   build: ./nginx
+  #   networks:
+  #     - app-net-wiki
+  #   ports:
+  #     - 1234:80
+  #   depends_on:
+  #     - wiki
+  #   volumes:
+  #       - static_volume:/usr/src/app/static
   
-volumes:
-  static_volume:
+# volumes:
+#   static_volume:
