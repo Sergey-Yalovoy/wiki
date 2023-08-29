@@ -73,7 +73,6 @@ class ImageBlockConverter(MarkdownConverter):
 
 # Create shorthand method for conversion
 def md(html, **options):
-    print(options)
     return ImageBlockConverter(**options).convert(html)
 
 
