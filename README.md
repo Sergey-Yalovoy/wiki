@@ -1,4 +1,8 @@
+
+
 # WiKi
+
+![example](example.gif)
 
 WiKi is a project based on **[django-wiki](https://github.com/django-wiki/django-wiki)** deployed in a docker container with a function to automatically convert Word (.docx) document to markdown. This project does not change the existing project, but only complements the upload attachments feature.
 
@@ -26,5 +30,17 @@ in the ***docker-compose.yml*** file, you can uncomment the services responsible
 
 ## Migrations and user creations
 
+Connect to the container.
 
+```bash
+docker-compose exec wiki bash
+```
 
+Perform migration and create user. Everything is done as in a regular Django application.
+
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+You can now open in your browser and create your first article.
